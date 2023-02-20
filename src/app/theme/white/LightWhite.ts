@@ -2,15 +2,15 @@ import { blueGrey, green, grey, lightBlue, purple, red, yellow } from "@mui/mate
 import {createTheme} from "@mui/material";
 
 
-export const LightBlackTheme = createTheme({
+export const LightWhiteTheme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            main: grey[800],
+            main: blueGrey.A400,
             contrastText: 'black'
         },
         secondary: {
-            main: blueGrey[500],
+            main: grey[800],
             contrastText: 'black'
         },
         error: {

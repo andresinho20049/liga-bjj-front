@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useCallback, useContext, useMemo } from "react";
 import { ThemeProvider } from "@mui/material";
-import { DarkTheme, LightTheme } from "../theme";
+import { DarkBlackTheme, DarkBlueTheme, DarkBrownTheme, DarkGreenTheme, DarkOrangeTheme, DarkPurpleTheme, DarkTheme, DarkWhiteTheme, DarkYellowTheme, LightBlackTheme, LightBlueTheme, LightBrownTheme, LightGreenTheme, LightOrangeTheme, LightPurpleTheme, LightTheme, LightWhiteTheme, LightYellowTheme } from "../theme";
 import usePersistedState from "../hooks/UsePersistedState";
 import { beltThemeType } from "../interface";
 
@@ -34,10 +34,28 @@ export const AppThemeProvider = ({ children }: IAppThemeProviderProps) => {
 
         switch (themeName) {
             case "Black":
-                return isDark ? DarkTheme : LightTheme;
+                return isDark ? DarkBlackTheme : LightBlackTheme;
+
+            case "Blue":
+                return isDark ? DarkBlueTheme : LightBlueTheme;
+
+            case "Brown":
+                return isDark ? DarkBrownTheme : LightBrownTheme;
+
+            case "Green":
+                return isDark ? DarkGreenTheme : LightGreenTheme;
+
+            case "Orange":
+                return isDark ? DarkOrangeTheme : LightOrangeTheme;
+
+            case "Purple":
+                return isDark ? DarkPurpleTheme : LightPurpleTheme;
 
             case "White":
-                return isDark ? DarkTheme : LightTheme;
+                return isDark ? DarkWhiteTheme : LightWhiteTheme;
+
+            case "Yellow":
+                return isDark ? DarkYellowTheme : LightYellowTheme;
 
             default:
                 return isDark ? DarkTheme : LightTheme;
@@ -46,7 +64,7 @@ export const AppThemeProvider = ({ children }: IAppThemeProviderProps) => {
     }, [isDark, themeName]);
 
     return (
-        <AppThemeContext.Provider value={{ isDark , toggleIsDark, themeName, setThemeName }}>
+        <AppThemeContext.Provider value={{ isDark, toggleIsDark, themeName, setThemeName }}>
             <ThemeProvider theme={theme}>
                 {children}
             </ThemeProvider>

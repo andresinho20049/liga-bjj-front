@@ -1,9 +1,13 @@
 import { Box, ImageList, ImageListItem, useMediaQuery, useTheme } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { useAppThemeContext } from "../context";
 
 export const Home = () => {
 
     const theme = useTheme();
     const smUp = useMediaQuery(theme.breakpoints.up('sm'));
+
+    const {themeName, isDark} = useAppThemeContext();
 
     function srcset(image: string, size: number, rows = 1, cols = 1) {
         return {
@@ -62,6 +66,9 @@ export const Home = () => {
             flexDirection: 'column',
             justifyContent: 'center'
         }}>
+            <Typography color={'primary'}>
+                {`Tema: ${themeName} - ${isDark ? "Dark" : "Light"}`}
+            </Typography>
             <ImageList
                 sx={{ width: { xs: '90vw', md: 800 }, height: '80vh' }}
                 variant="quilted"

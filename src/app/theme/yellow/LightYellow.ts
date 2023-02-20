@@ -1,16 +1,16 @@
-import { blueGrey, green, grey, lightBlue, purple, red, yellow } from "@mui/material/colors";
+import { amber, green, grey, lightBlue, lime, purple, red, yellow } from "@mui/material/colors";
 import {createTheme} from "@mui/material";
 
 
-export const LightBlackTheme = createTheme({
+export const LightYellowTheme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            main: grey[800],
+            main: amber.A200,
             contrastText: 'black'
         },
         secondary: {
-            main: blueGrey[500],
+            main: lime[200],
             contrastText: 'black'
         },
         error: {
@@ -26,8 +26,8 @@ export const LightBlackTheme = createTheme({
             main: green[700]
         },
         background: {
-            default: grey[200],
-            paper: grey[50]
+            default: yellow[50],
+            paper: amber[50]
         },
         action: {
             active: grey[900]
