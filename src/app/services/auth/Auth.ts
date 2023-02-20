@@ -44,14 +44,17 @@ const auth = async (login: IUserLogin): Promise<string> => {
     }
 }
 
-const parseToken = (token: string): IPayloadData => {
+const parseToken = (token: string | null): IPayloadData | null => {
     try {
+
+        if(token === null)
+            return null;
         
         const userLogged: IPayloadData = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
         return userLogged;
 
     } catch (error) {
-        throw error;
+        return null;
     }
 }
 

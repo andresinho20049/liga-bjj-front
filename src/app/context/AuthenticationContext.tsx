@@ -39,11 +39,10 @@ export const AuthenticationProvider = ({ children }: IAuthenticationProviderProp
     const handleLogout = useCallback(() => {
         UserService.logout();
         setToken(null);
-        setUserLogged(null);
     }, []);
 
     useMemo(() => {
-        const payload = AuthService.parseToken(token || '');
+        const payload = AuthService.parseToken(token);
         setUserLogged(payload);
     }, [token]);
 
