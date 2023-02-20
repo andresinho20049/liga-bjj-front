@@ -110,7 +110,7 @@ export const Login = () => {
                             title={`
                             Mais informações podem ser encontradas no README do github
                         `}
-                            children={<Link target="_blank" color="error" href="https://github.com/andresinho20049/Curso-de-React" variant="body2">
+                            children={<Link target="_blank" color="error" href="https://github.com/andresinho20049/liga-bjj-front" variant="body2">
                                 Help
                             </Link>}
                         />
