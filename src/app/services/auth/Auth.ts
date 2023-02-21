@@ -8,8 +8,9 @@ const auth = async (login: IUserLogin): Promise<string> => {
     try {
 
         const encryptedPassword = encryptedAES(login.password);
-        const encryptedDate = encryptedAES(new Date().toLocaleString('pt-BR'));
-        const passwordEncoded = Buffer.from(`${encryptedPassword}|${encryptedDate}`).toString('base64');
+        // const encryptedDate = encryptedAES(new Date().toLocaleString('pt-BR'));
+        const encryptedKeyVerify = encryptedAES(process.env.REACT_APP_KEY_VERIFY || '');
+        const passwordEncoded = Buffer.from(`${encryptedPassword}|${encryptedKeyVerify}`).toString('base64');
 
         const data = new URLSearchParams({ 'username': login.username });
         data.append('password', passwordEncoded);
