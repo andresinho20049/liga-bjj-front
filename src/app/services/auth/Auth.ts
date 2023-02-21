@@ -1,12 +1,7 @@
 import axios from 'axios'
 import { Buffer } from 'buffer';
 import { encryptedAES } from '../../hooks/UseCrypto';
-import { IPayloadData } from '../../interface';
-
-export interface IUserLogin {
-    username: string,
-    password: string
-}
+import { IPayloadData, IUserLogin } from '../../interface';
 
 const auth = async (login: IUserLogin): Promise<string> => {
 
