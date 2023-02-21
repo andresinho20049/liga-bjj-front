@@ -18,8 +18,8 @@ export const MenuAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }} >
-            <img alt='Logo' src={'./android-chrome-512x512.png'} width={45} />
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mx: 1 }} >
+            <img alt='Logo' src={'./android-chrome-512x512.png'} width={55} />
           </Box>
           <Typography
             variant="h6"
@@ -73,7 +73,7 @@ export const MenuAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }} >
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, mx: 1 }} >
             <img alt='Logo' src={'./android-chrome-512x512.png'} width={45} />
           </Box>
           <Typography
@@ -102,7 +102,7 @@ export const MenuAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Abrir Menu">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, border: 1, borderColor: 'background.default' }}>
                 <Avatar alt="BJJ" src={`/img/${themeName}-belt.png`} />
               </IconButton>
             </Tooltip>

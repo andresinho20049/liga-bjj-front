@@ -26,8 +26,8 @@ export const LightBlackTheme = createTheme({
             main: green[700]
         },
         background: {
-            default: grey[200],
-            paper: grey[50]
+            default: grey.A400,
+            paper: grey[200]
         },
         action: {
             active: grey[900]
