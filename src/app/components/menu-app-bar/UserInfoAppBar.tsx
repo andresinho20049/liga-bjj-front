@@ -1,13 +1,10 @@
-import { ListItem, Typography, ListItemIcon, ListItemText } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { useAppThemeContext, useAuthenticationContext } from '../../context';
+import { ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { useAuthenticationContext } from '../../context';
 
 export const UserInfoAppBar = () => {
 
     const { userLogged } = useAuthenticationContext();
-    const { setThemeName } = useAppThemeContext();
-
-    setThemeName(userLogged?.belt || 'Black');
 
     return (
         <ListItem alignItems="center">
