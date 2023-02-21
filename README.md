@@ -32,7 +32,7 @@ Consulte a seção sobre [implantação](https://facebook.github.io/create-react
 ---
 
 ## Bibliotecas utilizadas
-Irei abordar um pouco sobre as ferramentas/bibliotecas utilizadas, o porque foram desenvolvidas de tal maneiras, principalmente os pontos que foram desenvolvidos diferente da abordagem utilizada no curso.
+Irei abordar um pouco sobre as ferramentas/bibliotecas utilizadas, o porque foram desenvolvidas de tal maneiras.
 
 ### Material UI
 Material UI é uma biblioteca de componentes React UI que implementa o Material Design do Google.
@@ -60,10 +60,10 @@ React é uma biblioteca popular para criar aplicações de página única (SPAs)
 
 e, diferentemente das aplicações convencionais de várias páginas, a navegação nessas views não deve resultar no recarregamento da página inteira.
 
-# Segurança
+## Segurança
 Essa aplicação React consome serviço de uma aplicação Java Spring com Autenticação Oauth2, e o esquema de login deve seguir os requisitos de validação e autenticação da API.
 
-## Camada de segurança no front
+### Camada de segurança no front
 Conforme dito anteriormente o back-end trabalha com Authentication Server Oauth2, abaixo detalho melhor o funcionamento do login, resumidamente a sessão será validada atraves do token jwt, caso o mesmo esteja expirado ou seja inexistente, o usuário será deslogado.
 
 > Request: oauth/token
@@ -95,19 +95,19 @@ Conforme dito anteriormente o back-end trabalha com Authentication Server Oauth2
 
 > O username e password informados no body, é relacionado ao cliente(usuário) que esta efetuando o login, o clientId e clientSecret informado no bloco auth é para o application_client se autenticar com o Authentication server.
 
-# Varios Temas
+## Varios Temas
 O portal possibilita a criação de usuário para diversas faixas dentro do Jiu-Jitsu.
 
 Sendo elas: 'Preta', 'Azul', 'Marrom', 'Verde', 'Laranja', 'Roxa', 'Branco', 'Amarelo'
 
 e para cada faixa o portal possui temas Dark e Light personalizados.
 
-## Funcionamento
+### Funcionamento
 O portal possui um contexto, `AppThemeContext` que recebe informações do usuário logado, e se o tema é tema selecionado é Dark ou Light.
 
 Depois retorna o tema correspondente da faixa/Dark-Light e esse tema é aplicado a interface do portal.
 
-# Considerações
+## Considerações
 A LigaBJJ desenvolve um novo e inédito conceito em ligas e disputas de jiu-jitsu,
 sendo a primeira liga totalmente interativa da internet brasileira;
 
