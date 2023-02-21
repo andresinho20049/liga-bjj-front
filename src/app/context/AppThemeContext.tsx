@@ -8,8 +8,8 @@ interface IAppThemeContextData {
     isDark: boolean;
     toggleIsDark: () => void;
 
-    themeName: beltThemeType;
-    setThemeName: (themeName: beltThemeType) => void;
+    themeName: beltThemeType | null;
+    setThemeName: (themeName: beltThemeType | null) => void;
 }
 
 export const AppThemeContext = createContext({} as IAppThemeContextData);
@@ -24,7 +24,7 @@ interface IAppThemeProviderProps {
 
 export const AppThemeProvider = ({ children }: IAppThemeProviderProps) => {
     const [isDark, setThemeIsDark] = usePersistedState<boolean>("themeIsDark", false);
-    const [themeName, setThemeName] = usePersistedState<beltThemeType>("theme", "White");
+    const [themeName, setThemeName] = usePersistedState<beltThemeType | null>("theme", null);
 
     const toggleIsDark = useCallback(() => {
         setThemeIsDark((prev) => !prev);
