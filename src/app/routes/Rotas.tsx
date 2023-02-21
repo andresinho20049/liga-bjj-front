@@ -2,6 +2,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ForgetPassword, Home, Login, SignUp } from "../pages";
 import { Layout } from "../components";
 import { useAuthenticationContext } from "../context/AuthenticationContext";
+import { useAppThemeContext } from "../context";
+import { useEffect } from "react";
 
 interface IPagesData {
     to: string
@@ -29,8 +31,12 @@ export const pages: IPagesData[] = [
 ]
 export const Rotas = () => {
 
-    const { isAuthenticated } = useAuthenticationContext();
+    const { isAuthenticated, userLogged } = useAuthenticationContext();
+    const { setThemeName } = useAppThemeContext();
 
+    useEffect(() => {
+        setThemeName(userLogged?.belt || null);
+    }, [isAuthenticated, userLogged]);
 
     if(!isAuthenticated)
         return (

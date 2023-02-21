@@ -3,7 +3,7 @@ import { Buffer } from 'buffer';
 import { encryptedAES } from '../../hooks/UseCrypto';
 import { IPayloadData, IUserLogin } from '../../interface';
 
-const auth = async (login: IUserLogin): Promise<string> => {
+const login = async (login: IUserLogin): Promise<string> => {
 
     try {
 
@@ -40,6 +40,25 @@ const auth = async (login: IUserLogin): Promise<string> => {
     }
 }
 
+const logout = async (token: string) => {
+
+    const config = {
+        method: 'post',
+        withCredentials: false,
+        url: `${process.env.REACT_APP_BASE_URL}/oauth/revoke-token`,
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    };
+
+    try {
+        await axios(config);
+    } catch(error) {
+        console.error(error);
+    }
+
+}
+
 const parseToken = (token: string | null): IPayloadData | null => {
     try {
 
@@ -55,6 +74,8 @@ const parseToken = (token: string | null): IPayloadData | null => {
 }
 
 export const AuthService = {
-    auth,
+    login,
+    logout,
+
     parseToken
 };

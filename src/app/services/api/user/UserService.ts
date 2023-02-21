@@ -81,23 +81,11 @@ const deleteById = async (id: number): Promise<void | Error> => {
     }
 };
 
-const logout = async (): Promise<void> => {
-
-    try {
-
-        await ApiForm.post(`/oauth/revoke-token`);
-
-    } catch (error: any) {
-        console.error(error?.message || "Token não pode ser revogado com sucesso e/ou não informado.");
-    }
-};
-
 export const UserService = {
     getAll,
     create,
     getById,
     getByUsername,
     update,
-    deleteById,
-    logout
+    deleteById
 };

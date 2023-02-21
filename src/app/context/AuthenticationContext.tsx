@@ -1,8 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from "react";
 import usePersistedState from "../hooks/UsePersistedState";
 import { IPayloadData, IUserLogin } from "../interface";
-import { AuthService, UserService } from "../services";
-import { useAppThemeContext } from "./AppThemeContext";
+import { AuthService } from "../services";
 
 interface IAuthenticationData {
     isAuthenticated: boolean;
@@ -25,12 +24,10 @@ export const AuthenticationProvider = ({ children }: IAuthenticationProviderProp
     const [token, setToken] = usePersistedState<string | null>('auth', null);
     const [userLogged, setUserLogged] = useState<IPayloadData | null>(null);
 
-    const { setThemeName } = useAppThemeContext();
-
     const handleLogin = useCallback(async (login: IUserLogin):Promise<void | Error> => {
 
         try {
-            const accessToken = await AuthService.auth(login);
+            const accessToken = await AuthService.login(login);
             setToken(accessToken);
 
         } catch (error: any) {
@@ -40,9 +37,11 @@ export const AuthenticationProvider = ({ children }: IAuthenticationProviderProp
     }, [])
 
     const handleLogout = useCallback(() => {
-        UserService.logout();
+        if(token !== null)
+            AuthService.logout(token);
+
         setToken(null);
-    }, []);
+    }, [token]);
 
     useMemo(() => {
         const payload = AuthService.parseToken(token);
@@ -50,9 +49,6 @@ export const AuthenticationProvider = ({ children }: IAuthenticationProviderProp
     }, [token]);
 
     const isAuthenticated = useMemo(() => {
-
-        setThemeName(userLogged?.belt || null);
-
         return !!userLogged && Date.now() < userLogged?.exp * 1000;
     }, [userLogged]);
 
