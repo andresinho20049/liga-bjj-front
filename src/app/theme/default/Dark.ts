@@ -1,4 +1,4 @@
-import { blue, green, grey, lightBlue, purple, red, yellow } from "@mui/material/colors";
+import { blue, green, deepPurple, lightBlue, purple, red, yellow } from "@mui/material/colors";
 import { createTheme } from "@mui/material";
 
 
@@ -30,7 +30,7 @@ export const DarkTheme = createTheme({
             paper: '#303134'
         },
         action: {
-            active: grey[50]
+            active: deepPurple.A200
         }
     },
     typography: {

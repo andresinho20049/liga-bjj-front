@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Home, Login } from "../pages";
+import { ForgetPassword, Home, Login, SignUp } from "../pages";
 import { Layout } from "../components";
 import { useAuthenticationContext } from "../context/AuthenticationContext";
 
@@ -37,6 +37,8 @@ export const Rotas = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/forget-password" element={<ForgetPassword />} />
                     
                     <Route path="*" element={<Navigate to="/login" />} />
                 </Routes>
