@@ -3,7 +3,6 @@ import { AppThemeProvider, AuthenticationProvider, SnackBarProvider } from "./co
 import './form/TraducoesYup';
 import { Rotas } from "./routes/Rotas";
 
-
 const App = () => {
   return (
     <AppThemeProvider>

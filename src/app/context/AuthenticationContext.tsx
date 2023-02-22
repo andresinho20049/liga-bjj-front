@@ -2,8 +2,10 @@ import { createContext, ReactNode, useCallback, useContext, useMemo, useState } 
 import usePersistedState from "../hooks/UsePersistedState";
 import { IPayloadData, IUserLogin } from "../interface";
 import { AuthService } from "../services";
+import { WithAxios } from "../services/api/WithAxios";
 
 interface IAuthenticationData {
+    token: string | null;
     isAuthenticated: boolean;
     login: (login: IUserLogin) => Promise<Error | void>;
     logout: () => void;
@@ -24,7 +26,7 @@ export const AuthenticationProvider = ({ children }: IAuthenticationProviderProp
     const [token, setToken] = usePersistedState<string | null>('auth', null);
     const [userLogged, setUserLogged] = useState<IPayloadData | null>(null);
 
-    const handleLogin = useCallback(async (login: IUserLogin):Promise<void | Error> => {
+    const handleLogin = useCallback(async (login: IUserLogin): Promise<void | Error> => {
 
         try {
             const accessToken = await AuthService.login(login);
@@ -37,7 +39,7 @@ export const AuthenticationProvider = ({ children }: IAuthenticationProviderProp
     }, [])
 
     const handleLogout = useCallback(() => {
-        if(token !== null)
+        if (token !== null)
             AuthService.logout(token);
 
         setToken(null);
@@ -53,8 +55,10 @@ export const AuthenticationProvider = ({ children }: IAuthenticationProviderProp
     }, [userLogged]);
 
     return (
-        <AuthenticationContext.Provider value={{ isAuthenticated, login: handleLogin, logout: handleLogout, userLogged }}>
-            {children}
+        <AuthenticationContext.Provider value={{ token, isAuthenticated, login: handleLogin, logout: handleLogout, userLogged }}>
+            <WithAxios>
+                {children}
+            </WithAxios>
         </AuthenticationContext.Provider>
     )
 }

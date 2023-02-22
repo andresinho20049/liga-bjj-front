@@ -4,6 +4,7 @@ import { Layout } from "../components";
 import { useAuthenticationContext } from "../context/AuthenticationContext";
 import { useAppThemeContext } from "../context";
 import { useEffect } from "react";
+import { Usuarios } from "../pages/usuarios/Usuarios";
 
 interface IPagesData {
     to: string
@@ -19,15 +20,15 @@ export const pages: IPagesData[] = [
         element: <Home />
     },
     {
-        label: 'Page 2',
-        to: '/page2',
-        element: <Home />
-    },
-    {
-        label: 'Page3',
-        to: '/page3',
-        element: <Home />
+        label: 'Usuários',
+        to: '/users',
+        element: <Usuarios />
     }
+    // {
+    //     label: 'Page3',
+    //     to: '/page3',
+    //     element: <Home />
+    // }
 ]
 export const Rotas = () => {
 

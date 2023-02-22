@@ -1,20 +1,10 @@
+import { IPageableData, IUserData } from "../../../interface";
 import { ApiForm } from "../ApiConfig";
 
-export interface IUser {
-    id: number;
-    name: string,
-    email: string,
-    password: string,
-    belt: ['White', 'Yellow', 'Orange', 'Green', 'Blue', 'Purple', 'Brown', 'Black'],
-    updatePassword: Boolean,
-    roles: IRoles[]
-}
+// const ApiForm = ApiConfig();
 
-interface IRoles {
-    name: string
-}
+const getAll = async (): Promise<IUserData[] | Error> => {
 
-const getAll = async (): Promise<IUser[] | Error> => {
 
     try {
         const { data } = await ApiForm.get('/usuarios');
@@ -25,7 +15,18 @@ const getAll = async (): Promise<IUser[] | Error> => {
     }
 };
 
-const getById = async (id: number): Promise<IUser | Error> => {
+const getPaginated = async (page = 1, size = 5): Promise<IPageableData | Error> => {
+
+    try {
+        const { data } = await ApiForm.get(`/user/paginated?page=${page - 1}&size=${size}`);
+
+        return data;
+    } catch (error: any) {
+        return new Error(error?.message || "Erro ao consultar a API");
+    }
+};
+
+const getById = async (id: number): Promise<IUserData | Error> => {
 
     try {
         const { data } = await ApiForm.get(`/usuarios/${id}`);
@@ -36,7 +37,7 @@ const getById = async (id: number): Promise<IUser | Error> => {
     }
 };
 
-const getByUsername = async (username: string): Promise<IUser[] | Error> => {
+const getByUsername = async (username: string): Promise<IUserData[] | Error> => {
 
     try {
 
@@ -48,11 +49,11 @@ const getByUsername = async (username: string): Promise<IUser[] | Error> => {
     }
 };
 
-const create = async (user: Omit<IUser, 'id'>): Promise<IUser | Error> => {
+const create = async (user: Omit<IUserData, 'id'>): Promise<IUserData | Error> => {
 
     try {
 
-        const { data } = await ApiForm.post<IUser>(`/usuarios`, user);
+        const { data } = await ApiForm.post<IUserData>(`/usuarios`, user);
 
         return data;
     } catch (error: any) {
@@ -60,11 +61,11 @@ const create = async (user: Omit<IUser, 'id'>): Promise<IUser | Error> => {
     }
 };
 
-const update = async (user: IUser): Promise<IUser | Error> => {
+const update = async (user: IUserData): Promise<IUserData | Error> => {
 
     try {
 
-        const { data } = await ApiForm.put<IUser>(`/usuarios/${user.id}`, user);
+        const { data } = await ApiForm.put<IUserData>(`/usuarios/${user.id}`, user);
 
         return data;
     } catch (error: any) {
@@ -83,6 +84,7 @@ const deleteById = async (id: number): Promise<void | Error> => {
 
 export const UserService = {
     getAll,
+    getPaginated,
     create,
     getById,
     getByUsername,
